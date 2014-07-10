@@ -60,10 +60,12 @@ public class DocumentRepository {
 			
 			fw = new FileWriter(dipFileName,true); 
 		    fw.write(document.toString());
+		    fw.write("\r\n");
 		    fw.close();
 		
+		    return true;
 		} catch (Exception e) {
-			
+			Logger.logException(document.getFileName(), e);
 		} 
 		
 		return false;

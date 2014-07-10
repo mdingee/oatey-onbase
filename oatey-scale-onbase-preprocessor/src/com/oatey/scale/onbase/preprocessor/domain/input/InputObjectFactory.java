@@ -39,6 +39,8 @@ public class InputObjectFactory {
 	}
 	
 	public InputObject build(String values) {
+		Logger.logStep(null, "Building Document based on {" + values + "}");
+		
 		if(values == null)
 			return null;
 		

@@ -1,5 +1,7 @@
 package com.oatey.scale.onbase.preprocessor.domain.output;
 
+import com.oatey.scale.onbase.preprocessor.domain.DomainContext;
+
 public class Document_BillOfLading extends Document {
 
 	private String purchaseOrderNumber;
@@ -56,7 +58,7 @@ public class Document_BillOfLading extends Document {
 				"\"" + getPurchaseOrderNumber() + "\"," +
 				"\"" + getShipmentId() + "\"," +
 				"\"" + getBillOfLadingNumber() + "\"," +
-				"\"" + getFileName() + "\"";
+				"\"" + DomainContext.getOutputDirectory() + "/unprocessed/" + getFileName() + "\"";
 	}
 	
 	@Override

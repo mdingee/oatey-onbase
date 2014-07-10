@@ -1,5 +1,6 @@
 package com.oatey.scale.onbase.preprocessor.domain.output;
 
+import com.oatey.scale.onbase.preprocessor.domain.Logger;
 import com.oatey.scale.onbase.preprocessor.domain.input.InputObject;
 import com.oatey.scale.onbase.preprocessor.domain.repositories.ScaleRepository;
 
@@ -8,17 +9,23 @@ public class DocumentFactory {
 	private ScaleRepository scaleRepository;
 	
 	public Document build(InputObject inputObject) {
+		Document document = null;
 		
 		if(isBillOfLading(inputObject))
-			return buildBillOfLading(inputObject);
+			document = buildBillOfLading(inputObject);
 		
 		if(isPackingSlip(inputObject))
-			return buildPackingSlip(inputObject);
+			document = buildPackingSlip(inputObject);
 		
-		return null;
+		if(document != null)
+			Logger.logStep(null, "Document created = " + document);
+		
+		return document;
 	}
 	
 	public Document_BillOfLading buildBillOfLading(InputObject inputObject) {
+		Logger.logStep(null,"Creating Bill of Lading");
+		
 		String purchaseOrderNumber = inputObject.getValue(0);
 		String shipmentId = inputObject.getValue(1);
 		String billOfLadingNumber = inputObject.getValue(3);
@@ -36,20 +43,22 @@ public class DocumentFactory {
 	}
 	
 	private String getCustomerNumber(String shipmentId) {
+		Logger.logStep(null, "Fetching customer number from SCALE for ShipmentID " + shipmentId);
 		return getScaleRepository().getCustomerFromShipment(shipmentId);
 	}
 
-	public Document_PackingSlip buildPackingSlip(InputObject inputObject) {
+	public Document_PackingList buildPackingSlip(InputObject inputObject) {
+		Logger.logStep(null,"Creating Packing List");
 		String purchaseOrderNumber = inputObject.getValue(0);
 		String shipmentId = inputObject.getValue(1);
 		String fileName = inputObject.getValue(3);
 		
-		Document_PackingSlip doc = new Document_PackingSlip();
-		doc.setPurchaseOrderNumber(purchaseOrderNumber);
-		doc.setShipmentId(shipmentId);
-		doc.setFileName(fileName);
+		Document_PackingList document = new Document_PackingList();
+		document.setPurchaseOrderNumber(purchaseOrderNumber);
+		document.setShipmentId(shipmentId);
+		document.setFileName(fileName);
 		
-		return doc;
+		return document;
 	}
 	
 	public boolean isBillOfLading(InputObject inputObject) {
@@ -59,7 +68,7 @@ public class DocumentFactory {
 	
 	public boolean isPackingSlip(InputObject inputObject) {
 		String docType = inputObject.getValue(2);
-		return docType.matches("(.*)Packing Slip");
+		return docType.matches("(.*)Packing List");
 	}
 
 	public ScaleRepository getScaleRepository() {

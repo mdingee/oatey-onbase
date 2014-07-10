@@ -1,6 +1,8 @@
 package com.oatey.scale.onbase.preprocessor.domain.output;
 
-public class Document_PackingSlip extends Document {
+import com.oatey.scale.onbase.preprocessor.domain.DomainContext;
+
+public class Document_PackingList extends Document {
 	
 	private String purchaseOrderNumber;
 	private String shipmentId;
@@ -23,7 +25,7 @@ public class Document_PackingSlip extends Document {
 	
 	@Override
 	public String getDocumentType() {
-		return Document.DOC_TYPE_PACK_SLIP;
+		return Document.DOC_TYPE_PACK_LIST;
 	}
 
 	@Override
@@ -31,7 +33,7 @@ public class Document_PackingSlip extends Document {
 		return "\"" + getDocumentType() + "\"," +
 			   "\"" + getPurchaseOrderNumber() + "\"," +
 			   "\"" + getShipmentId() + "\"," +
-			   "\"" + getFileName() + "\"";
+			   "\"" + DomainContext.getOutputDirectory() + "/unprocessed/" + getFileName() + "\"";
 	}
 
 }

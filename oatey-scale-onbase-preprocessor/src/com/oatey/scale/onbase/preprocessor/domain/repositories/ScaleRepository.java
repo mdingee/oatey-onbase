@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.oatey.scale.onbase.preprocessor.domain.Logger;
+
 public class ScaleRepository {
 	private String driverClass;
 	private String url;
@@ -14,7 +16,7 @@ public class ScaleRepository {
 	private Connection connection;
 	
 	public String getCustomerFromShipment(String shipmentId) {
-		String sql = "select CUSTOMER from SHIPMENT_HEADER where SHIPMENT_ID = ?";
+		String sql = "select CUSTOMER from ils.dbo.SHIPMENT_HEADER where SHIPMENT_ID = ?";
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -27,7 +29,7 @@ public class ScaleRepository {
 			if(rs.next())
 				return rs.getString(1);
 		} catch (Exception e) {
-			
+			Logger.logException(null, e);
 		} finally {
 			try { rs.close(); rs = null; } catch (Exception e) {}
 			try { ps.close(); ps = null; } catch (Exception e) {}

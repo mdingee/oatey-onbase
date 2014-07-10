@@ -1,8 +1,10 @@
 package com.oatey.scale.onbase.preprocessor.domain.output;
 
+import java.io.File;
+
 public abstract class Document {
 	public static final String DOC_TYPE_BOL = "DIST - Bill of Lading";
-	public static final String DOC_TYPE_PACK_SLIP = "DIST - Packing Slip";
+	public static final String DOC_TYPE_PACK_LIST = "DIST - Packing List";
 	
 	private String fileName;
 	
@@ -15,8 +17,8 @@ public abstract class Document {
 	}
 	
 	protected String cleanFileName(String dirtyFileName) {
-		String[] pieces = dirtyFileName.split("\\");
-		return pieces[(pieces.length - 1)];
+		File file = new File(dirtyFileName);
+		return file.getName();
 	}
 	
 	public abstract String getDocumentType();
