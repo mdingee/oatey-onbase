@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    					http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security 
+                        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+                                              
+		<bean name="ref_ScaleRespository" class="com.oatey.scale.onbase.preprocessor.domain.repositories.ScaleRepository">
+        	<property name="driverClassName" value="sun.jdbc.odbc.JdbcOdbcDriver"/>
+        	<property name="url" value="jdbc:odbc:DAXPROD"/>
+        	<property name="userName" value=""/>
+        	<property name="password" value=""/>
+        </bean>   
+        
+        <bean name="ref_DocumentFactory" class="com.oatey.scale.onbase.preprocessor.domain.output.DocumentFactory">
+        	<property name="scaleRepository" ref="ref_ScaleRepository"/>
+        </bean> 
+        
+        <bean name="ref_DocumentRepository" class="com.oatey.scale.onbase.preprocessor.domain.output.DocumentRepository"/>
+        
+        <bean name="ref_InputObjectFactory" class="com.oatey.scale.onbase.preprocessor.domain.input.InputObjectFactory"/>   
+        
+        <bean name="ref_InputRepostitory" class="com.oatey.scale.onbase.preprocessor.domain.input.InputRepository"/>
+        
+         <bean name="ref_Processor" class="">
+         	<property name="documentFactory" ref="ref_DocumentFactory"/>
+			<property name="inputObjectFactory" ref="ref_InputObjectFactory"/>
+			<property name="inputRepository" ref="ref_InputRepository"/>
+			<property name="documentRepository" ref="ref_DocumentRepository"/>
+         </bean>              
+        
+        <!-- TODO: Add class to SRC and update accordingly -->
+        <bean name="ref_EmailProcessor" class="com.oatey.sales.commissions.processor.EmailPostProcessor">
+        	<property name="fromEmailAddress" value="mdingee@oatey.com"/>
+			<property name="emailHostServer" value="oateyexcas1.private.oatey.com"/>
+			<property name="emailSubject" value="SCALE-OnBase Preprocessor run is complete"/>
+			<property name="emailMessage" value="SCALE-OnBase Preprocessor run is complete.  See attached file for details."/>
+        </bean>
+</beans>                        
