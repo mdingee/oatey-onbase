@@ -35,7 +35,7 @@ public class ScaleRepository {
 			try { ps.close(); ps = null; } catch (Exception e) {}
 		}
 		
-		return null;
+		return "000000";
 	}
 	
 	private Connection getConnection() throws Exception {

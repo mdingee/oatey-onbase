@@ -17,15 +17,14 @@ public class Main {
 	
 	private void run() {
 		Processor processor = DomainContext.getProcessor();
-		//while(true) {
-			
+		while(true) {
 			try {
 				processor.run();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		//	sleep();
-		//}
+			sleep();
+		}
 	}
 	
 	private void sleep() {

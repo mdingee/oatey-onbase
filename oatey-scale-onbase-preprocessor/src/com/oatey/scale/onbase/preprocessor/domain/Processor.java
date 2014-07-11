@@ -31,6 +31,12 @@ public class Processor {
 			Logger.logStep(fileName, "Beginning process");
 			
 			File inputFile = inputRepository.getUnprocessedFile(fileName);
+			
+			if(inputRepository.hasFileChanged(inputFile)) {
+				Logger.logStep(fileName, "Input File has changed.  Waiting for next pass.");
+				continue;
+			}
+			
 			InputObject inputObject = inputObjectFactory.build(inputFile);
 			Document document = documentFactory.build(inputObject);
 			
@@ -40,6 +46,11 @@ public class Processor {
 			}
 			
 			File pdfFile = inputRepository.getUnprocessedFile(document.getFileName());
+			
+			if(inputRepository.hasFileChanged(pdfFile)) {
+				Logger.logStep(fileName, "PDF File has changed.  Waiting for next pass.");
+				continue;
+			}
 			
 			if(!documentRepository.copyToUnprocessedFolder(pdfFile)) {
 				Logger.logFailure(fileName, "Unable to copy PDF file");
