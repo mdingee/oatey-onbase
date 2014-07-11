@@ -72,7 +72,7 @@ public class Processor {
 				continue;
 			}
 			
-			Logger.logStep(fileName, "Processed successfully");
+			Logger.logSuccess(fileName);
 		}
 	
 		Logger.logStep(null, "Ending processing run");

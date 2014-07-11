@@ -9,9 +9,7 @@ public class DomainContext {
 	private String inputDirectory;
 	private String outputDirectory;
 	private long sleepInterval;
-	private String adminEmailAddress;
 	private int logLevel;
-	private String logFile;
 
 	private ApplicationContext context;
 	private DomainContext() {
@@ -58,27 +56,11 @@ public class DomainContext {
 		getInstance().sleepInterval = sleepInterval;
 	}
 
-	public static String getAdminEmailAddress() {
-		return getInstance().adminEmailAddress;
-	}
-
-	public static void setAdminEmailAddress(String adminEmailAddress) {
-		getInstance().adminEmailAddress = adminEmailAddress;
-	}
-
 	public static int getLogLevel() {
 		return getInstance().logLevel;
 	}
 
 	public static void setLogLevel(int logLevel) {
 		getInstance().logLevel = logLevel;
-	}
-	
-	public static String getLogFile() {
-		return getInstance().logFile;
-	}
-
-	public static void setLogFile(String logFile) {
-		getInstance().logFile = logFile;
 	}
 }

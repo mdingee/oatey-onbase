@@ -3,6 +3,7 @@ package com.oatey.scale.onbase.preprocessor;
 import java.util.Map;
 
 import com.oatey.scale.onbase.preprocessor.domain.DomainContext;
+import com.oatey.scale.onbase.preprocessor.domain.Logger;
 import com.oatey.scale.onbase.preprocessor.domain.Processor;
 
 public class Main {
@@ -21,7 +22,7 @@ public class Main {
 			try {
 				processor.run();
 			} catch (Exception e) {
-				e.printStackTrace();
+				Logger.logException(null, e);
 			}
 			sleep();
 		}

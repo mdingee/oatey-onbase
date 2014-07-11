@@ -12,9 +12,7 @@ public class MainHelperUTest {
 	private static final String PARAM_INPUT = "-input";
 	private static final String PARAM_OUTPUT = "-output";
 	private static final String PARAM_SLEEP = "-sleep";
-	private static final String PARAM_EMAIL = "-email";
 	private static final String PARAM_LOG_LEVEL = "-logLevel";
-	private static final String PARAM_LOG_FILE = "-logFile";
 	
 	private static final String PARAM_INPUT_VALUE = "INPUT_VALUE";
 	private static final String PARAM_OUTPUT_VALUE = "OUTPUT_VALUE";
@@ -23,16 +21,12 @@ public class MainHelperUTest {
 	private static final long PARAM_SLEEP_INVALID_VALUE_NEG = -100L;
 	private static final String PARAM_SLEEP_INVALID_VALUE_NAN = "JUNK";
 	
-	private static final String PARAM_EMAIL_VALUE = "email@email.com";
-	
 	private static final int PARAM_LOG_LEVEL_VALID_VALUE    = 0;
 	private static final int PARAM_LOG_LEVEL_VALID_VALUE1   = 1;
 	private static final int PARAM_LOG_LEVEL_VALID_VALUE2   = 2;
 	private static final int PARAM_LOG_LEVEL_VALID_VALUE3   = 3;
 	private static final int PARAM_LOG_LEVEL_INVALID_VALUE4 = 4;
 	private static final String PARAM_LOG_LEVEL_INVALID_VALUE_NAN = "JUNK";
-	
-	private static final String PARAM_LOG_FILE_VALUE = "LOGFILE_VALUE";
 	
 	private MainHelper mainHelper;
 	
@@ -51,15 +45,11 @@ public class MainHelperUTest {
 			
 			String inputDirectory = mainHelper.getInputDirectory(map);
 			String outputDirectory = mainHelper.getOutputDirectory(map);
-			String adminEmailAddress = mainHelper.getAdminEmailAddress(map);
-			String logFile = mainHelper.getLogFile(map);
 			long sleep = mainHelper.getSleepInterval(map);
 			int logLevel = mainHelper.getLogLevel(map);
 			
 			assertEquals(PARAM_INPUT_VALUE, inputDirectory);
 			assertEquals(PARAM_OUTPUT_VALUE, outputDirectory);
-			assertEquals(PARAM_EMAIL_VALUE, adminEmailAddress);
-			assertEquals(PARAM_LOG_FILE_VALUE, logFile);
 			assertEquals(PARAM_SLEEP_VALID_VALUE, sleep);
 			assertEquals(PARAM_LOG_LEVEL_VALID_VALUE, logLevel);
 		
@@ -166,9 +156,7 @@ public class MainHelperUTest {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 				            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE};
 		
 	}
 	
@@ -181,9 +169,7 @@ public class MainHelperUTest {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 				            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE1
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE1};
 		
 	}
 	
@@ -191,27 +177,21 @@ public class MainHelperUTest {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 				            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE2
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE2};
 		
 	}
 	private String[] getValidArguments_LogLevel3() {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 				            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE3
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE3};
 		
 	}
 	private String[] getInvalidArguments_LogLevel4() {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 				            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_INVALID_VALUE4
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_INVALID_VALUE4};
 		
 	}
 	
@@ -219,9 +199,7 @@ public class MainHelperUTest {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 				            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_INVALID_VALUE_NAN
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_INVALID_VALUE_NAN};
 		
 	}
 	
@@ -234,27 +212,20 @@ public class MainHelperUTest {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 	            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 	            ,PARAM_SLEEP + "=" + PARAM_SLEEP_INVALID_VALUE_NEG
-	            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-	            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE
-	            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+	            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE};
 	}
 	
 	private String[] getInvalidArguments_SleepInterval_NaN() {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
 	            ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 	            ,PARAM_SLEEP + "=" + PARAM_SLEEP_INVALID_VALUE_NAN
-	            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-	            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE
-	            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+	            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE};
 	}
 	
 	private String[] getInvalidArguments_MissingRequiredField() {
 		return new String[] {PARAM_INPUT + "=" + PARAM_INPUT_VALUE
-				          //  ,PARAM_OUTPUT + "=" + PARAM_OUTPUT_VALUE
 				            ,PARAM_SLEEP + "=" + PARAM_SLEEP_VALID_VALUE
-				            ,PARAM_EMAIL + "=" + PARAM_EMAIL_VALUE
-				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE
-				            ,PARAM_LOG_FILE + "=" + PARAM_LOG_FILE_VALUE};
+				            ,PARAM_LOG_LEVEL + "=" + PARAM_LOG_LEVEL_VALID_VALUE};
 		
 	}
 
